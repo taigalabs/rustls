@@ -64,6 +64,8 @@ impl RecordLayer {
         &mut self,
         encr: BorrowedOpaqueMessage<'a>,
     ) -> Result<Option<Decrypted<'a>>, Error> {
+        log::debug!("decrypt_incoming() 444");
+
         if self.decrypt_state != DirectionState::Active {
             return Ok(Some(Decrypted {
                 want_close_before_decrypt: false,

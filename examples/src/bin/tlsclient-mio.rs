@@ -132,6 +132,7 @@ impl TlsClient {
                 .reader()
                 .read_exact(&mut plaintext)
                 .unwrap();
+
             // io::stdout()
             //     .write_all(&plaintext)
             //     .unwrap();

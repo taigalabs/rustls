@@ -78,6 +78,8 @@ pub(super) fn handle_server_hello(
     our_key_share: Box<dyn ActiveKeyExchange>,
     mut sent_tls13_fake_ccs: bool,
 ) -> hs::NextStateOrError<'static> {
+    log::debug!("handle_server_hello()");
+
     validate_server_hello(cx.common, server_hello)?;
 
     let their_key_share = server_hello

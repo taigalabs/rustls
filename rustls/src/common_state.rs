@@ -149,6 +149,8 @@ impl CommonState {
         data: &mut Data,
         sendable_plaintext: Option<&mut ChunkVecBuffer>,
     ) -> Result<Box<dyn State<Data>>, Error> {
+        log::debug!("process_main_protocol()");
+
         // For TLS1.2, outside of the handshake, send rejection alerts for
         // renegotiation requests.  These can occur any time.
         if self.may_receive_application_data && !self.is_tls13() {
@@ -167,6 +169,7 @@ impl CommonState {
             data,
             sendable_plaintext,
         };
+
         match state.handle(&mut cx, msg) {
             Ok(next) => {
                 state = next.into_owned();

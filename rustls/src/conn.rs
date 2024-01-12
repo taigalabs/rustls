@@ -757,6 +757,7 @@ impl<Data> ConnectionCore<Data> {
                 Some(msg) => msg,
                 None => break,
             };
+            log::debug!("process_new_packets(): msg: {:?}", msg);
 
             match self.process_msg(msg, state, Some(sendable_plaintext)) {
                 Ok(new) => state = new,
@@ -767,6 +768,8 @@ impl<Data> ConnectionCore<Data> {
                 }
             }
         }
+
+        log::debug!("end process_new_packets()");
 
         deframer_buffer.discard(discard);
         self.state = Ok(state);
