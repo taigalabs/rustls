@@ -25,6 +25,7 @@ where
     /// Make a new Stream using the Connection `conn` and socket-like object
     /// `sock`.  This does not fail and does no IO.
     pub fn new(conn: &'a mut C, sock: &'a mut T) -> Self {
+        log::debug!("11");
         Self { conn, sock }
     }
 

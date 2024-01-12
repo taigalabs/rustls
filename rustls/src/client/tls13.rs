@@ -89,6 +89,8 @@ pub(super) fn handle_server_hello(
             )
         })?;
 
+    log::debug!("their_key_share: {:?}", their_key_share);
+
     if our_key_share.group() != their_key_share.group {
         return Err({
             cx.common.send_fatal_alert(

@@ -26,6 +26,7 @@ fn main() {
 
     // Allow using SSLKEYLOGFILE.
     config.key_log = Arc::new(rustls::KeyLogFile::new());
+    println!("123");
 
     let server_name = "www.rust-lang.org".try_into().unwrap();
     let mut conn = rustls::ClientConnection::new(Arc::new(config), server_name).unwrap();
@@ -42,6 +43,7 @@ fn main() {
         .as_bytes(),
     )
     .unwrap();
+
     let ciphersuite = tls
         .conn
         .negotiated_cipher_suite()
@@ -52,7 +54,8 @@ fn main() {
         ciphersuite.suite()
     )
     .unwrap();
+
     let mut plaintext = Vec::new();
     tls.read_to_end(&mut plaintext).unwrap();
-    stdout().write_all(&plaintext).unwrap();
+    // stdout().write_all(&plaintext).unwrap();
 }

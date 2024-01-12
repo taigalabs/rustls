@@ -105,6 +105,7 @@ pub(super) fn start_handshake(
     }
 
     let mut resuming = find_session(&server_name, &config, cx);
+    debug!("power123123");
 
     let key_share = if config.supports_version(ProtocolVersion::TLSv1_3) {
         Some(tls13::initial_key_share(&config, &server_name)?)
@@ -489,6 +490,8 @@ impl State<ClientConnectionData> for ExpectServerHello {
     where
         Self: 'm,
     {
+        debug!("handle() 123123");
+
         let server_hello =
             require_handshake_msg!(m, HandshakeType::ServerHello, HandshakePayload::ServerHello)?;
         trace!("We got ServerHello {:#?}", server_hello);

@@ -871,6 +871,8 @@ impl<Data> ConnectionCore<Data> {
             }
         };
 
+        log::debug!("msg: {:?}", msg);
+
         // For alerts, we have separate logic.
         if let MessagePayload::Alert(alert) = &msg.payload {
             self.common_state.process_alert(alert)?;

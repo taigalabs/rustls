@@ -132,9 +132,9 @@ impl TlsClient {
                 .reader()
                 .read_exact(&mut plaintext)
                 .unwrap();
-            io::stdout()
-                .write_all(&plaintext)
-                .unwrap();
+            // io::stdout()
+            //     .write_all(&plaintext)
+            //     .unwrap();
         }
 
         // If that fails, the peer might have started a clean TLS-level
